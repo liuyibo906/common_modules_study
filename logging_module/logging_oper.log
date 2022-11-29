@@ -1,0 +1,4 @@
+2022-11-28 20:58:17,336 - app.applog - INFO - info message
+2022-11-28 20:58:17,336 - app.applog - WARNING - warning message
+2022-11-28 20:58:17,336 - app.applog - ERROR - error message
+2022-11-28 20:58:17,336 - app.applog - CRITICAL - critical message

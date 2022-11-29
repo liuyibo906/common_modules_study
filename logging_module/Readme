@@ -1,0 +1,61 @@
+python_logging模块
+一、日志级别(数字是级别)
+日志级别是自下而上匹配，如果 将日志级别记录为 INFO ，那么INFO以及以上的级别日志都会记录，以下的不记,默认情况下日志打印只显示大于等于 WARNING 级别的日志
+CRITICAL=50  #整体软件挂掉
+ERROR=40 #报错后的记录日志
+WARNING=30 #有可能发生风险的日志
+INFO=20 #常规日志
+DEBUG=10 #调试日志，开发过程中记录，上线后不记录
+NOTSET=0 #不设置
+二、Logging 模块提供了两种日志记录方式
+一种方式是使用 Logging 提供的模块级别的函数
+Logging.basicConfig() 需要在开头就设置，在中间设置并无作用
+logging.basicConfig(filename='./example.log',filemode='w', level=logging.DEBUG,format='%(asctime)s %(msg)s %(filename)s %(lineno)s',datefmt='%Y-%m-%d %H:%M:%S')
+
+另一种方式是使用Logging日志系统的四大组件记录
+1、logger 对象：只负责产生日志，就是只给日志打上级别的标签。  记录器
+2、handler 对象：控制日志输出到哪里（可以输出到文件中保存，也可以打印到屏幕）  处理器
+3、filter 对象：负责过滤 (但是很少用,可以忽略) 过滤器
+4、formatter 对象：控制日志的格式  格式
+
+
+配置文件来读取logging的输出方式
+读取配置文件：logging.config.fileConfig('logging.conf')
+配置文件：
+[loggers]
+keys=root,applog
+
+[handlers]
+keys=consoleHandler,fileHandler
+
+[formatters]
+keys=simpleFormatter
+
+[logger_root]
+level=DEBUG
+handlers=consoleHandler
+
+[logger_applog]
+level=DEBUG
+handlers=fileHandler,consoleHandler
+qualname=applog
+propagate=0
+
+[handler_consoleHandler]
+class=StreamHandler
+level=DEBUG
+formatter=simpleFormatter
+args=(sys.stdout,)
+
+[handler_fileHandler]
+class=FileHandler
+args=('applog.log',)
+#handlers.TimedRotatingFileHandler
+#args=('applog.log','midnight',3600,0)
+level=DEBUG
+formatter=simpleFormatter
+
+[formatter_simpleFormatter]
+format=%(asctime)s-%(levelname)s-%(filename)s-%(lineno)d-%(message)s
+#设置时间输出格式
+datefmt=%Y-%m-%d %H:%M:%S
