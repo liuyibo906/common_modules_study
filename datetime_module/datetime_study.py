@@ -48,4 +48,4 @@ print(d.second)
 print(d.microsecond)
 #其他方法
 print(d.isoformat())
-print(d.strftime('%H%M%S'))
+print(d.strftime('%H:%M:%S'))
