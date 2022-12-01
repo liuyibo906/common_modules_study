@@ -18,7 +18,7 @@ print('今天是星期{}'.format(st.tm_wday+1))
 print(time.ctime())
 #strftime(格式)
 print(time.strftime('%Y-%m-%d %H:%M:%S'))
-print(time.strftime('%Y年%m月%d日 %H时%M分%S秒'))
+print(time.strftime('%Y%m%d %H%M%S'))
 print(time.strftime('%Y-%m-%d %H:%M:%S %a'))  #星期 %a
 print(time.strftime('%Y-%m-%d %H:%M:%S %A'))  #星期 %A
 print(time.strftime('%Y-%m-%d %H:%M:%S %b'))  #月
